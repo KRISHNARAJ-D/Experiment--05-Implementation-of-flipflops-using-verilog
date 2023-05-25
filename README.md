@@ -1,7 +1,10 @@
 # Experiment--05-Implementation-of-flipflops-using-verilog
-### AIM: To implement all the flipflops using verilog and validating their functionality using their functional tables
-### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
-### SOFTWARE REQUIRED:   Quartus prime
+### AIM: 
+To implement all the flipflops using verilog and validating their functionality using their functional tables
+### HARDWARE REQUIRED:
+– PC, Cyclone II , USB flasher
+### SOFTWARE REQUIRED: 
+Quartus prime
 ### THEORY 
 SR Flip-Flop
 SR flip-flop operates with only positive clock transitions or negative clock transitions. Whereas, SR latch operates with enable signal. The circuit diagram of SR flip-flop is shown in the following figure.
@@ -110,11 +113,13 @@ Q(t+1)=T′Q(t)+TQ(t)′
 6. Run the program and choose RTL viewer to get RTL realization.
 
 ### PROGRAM 
-/*
+```
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
+
 Developed by: Krishnaraj D
 RegisterNumber: 212222230070
-*/
+```
+
 ```
 i] SR flipflops
 module flipflops(S,R,Q,Qbar,clk);
@@ -125,10 +130,11 @@ initial Qbar = 1;
 always @(posedge clk)
 begin
 Q = S|((~R)&Q);
-Qbar = R|((~S)&(~Q));
+Qbar = R|((~S)&(~Qbar));
 end
 endmodule
-
+```
+```
 ii] JK flipflops
 module JK(J,K,Q,Qbar,clk);
 input J,K,clk;
@@ -138,41 +144,74 @@ initial Qbar = 1;
 always @(posedge clk)
 begin
 Q = (((~K)&Q)|(J&(~Q)));
-Qbar = ~Q; 
+Qbar = ((~J)&Qbar)|((~K)&(~Qbar)); 
 end
 endmodule
-
-
+```
+```
+iii] D flipflop
+module Dflipflop(D,Q,Qbar,clk);
+input D,clk;
+output reg Q,Qbar;
+initial Q = 0;
+initial Qbar = 1;
+always @(posedge clk)
+begin
+Q = D;
+Qbar = ~D;
+end
+endmodule
+```
+```
+iv] T flipflop
+module Tflipflop(T,Q,Qbar,clk);
+input T,clk;
+output reg Q,Qbar;
+initial Q = 0;
+initial Qbar = 1;
+always @(posedge clk)
+begin
+Q = ((T&(~Q))|((~T)&Q));
+Qbar = ((~T)&Qbar)|(T&(~Qbar));
+end
+endmodule
 ```
 
 
 
 ## RTL LOGIC FOR FLIPFLOPS 
 ### SR flipflpos
-![WhatsApp Image 2023-05-18 at 11 20 24](https://github.com/NathinR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/118679646/dca4274e-6467-4c08-9f6f-fa992e3db93d)
+![SR](https://github.com/KRISHNARAJ-D/Experiment--05-Implementation-of-flipflops-using-verilog/assets/119559695/d70734c2-7784-42f6-a12c-7a2ce0e020d4)
+
 
 ### JK flipflop
-![image](https://github.com/NathinR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/118679646/cbf60a74-2d62-4115-a89a-9f17b1d5c299)
+![JK](https://github.com/KRISHNARAJ-D/Experiment--05-Implementation-of-flipflops-using-verilog/assets/119559695/3160ec65-3c98-49b9-a6ff-e78e63ae5933)
 
 
+### D flipflop
+![D](https://github.com/KRISHNARAJ-D/Experiment--05-Implementation-of-flipflops-using-verilog/assets/119559695/10cf977f-0a6b-42c4-b45c-de40f319c61b)
 
 
-
-
+### T flipflop
+![T](https://github.com/KRISHNARAJ-D/Experiment--05-Implementation-of-flipflops-using-verilog/assets/119559695/ecf6a3a8-6a74-480a-b5fe-1294a0f1714a)
 
 
 ## TIMING DIGRAMS FOR FLIP FLOPS 
 ### SR flipflop
-![image](https://github.com/NathinR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/118679646/5a2dc494-c479-40b0-b9f6-47dc433f0943)
+![SR TIMING](https://github.com/KRISHNARAJ-D/Experiment--05-Implementation-of-flipflops-using-verilog/assets/119559695/a3583a97-3d2b-4c66-abd0-d39d7755eab9)
+
 
 ### JK flipflop
-![image](https://github.com/NathinR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/118679646/6ad31ca6-c6ae-45fe-bb65-e99fe1304a46)
+![JK TIMING](https://github.com/KRISHNARAJ-D/Experiment--05-Implementation-of-flipflops-using-verilog/assets/119559695/5effee10-4481-4022-a830-e9b1f1017bd9)
 
 
+### D flipflop
+![D TI](https://github.com/KRISHNARAJ-D/Experiment--05-Implementation-of-flipflops-using-verilog/assets/119559695/12d64479-e357-4965-b072-93e4ee0b0226)
 
 
+### T flipflop
+![T TI](https://github.com/KRISHNARAJ-D/Experiment--05-Implementation-of-flipflops-using-verilog/assets/119559695/05b14037-de9f-4bc2-a33f-94117f4ebfef)
 
 
-
-### RESULTS 
+## RESULTS 
 All the flipflops are implementde using verilog and their functionality has been validated using their functional tables.
