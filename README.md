@@ -102,34 +102,71 @@ Q(t+1)=T′Q(t)+TQ(t)′
 ⇒Q(t+1)=T⊕Q(t)
 
 ### Procedure
-/* write all the steps invloved */
-
-
+1. Open Quartus II and select new project and choose the file location.
+2. Module Declaration. Module should have the file name.
+3. Declare Inputs and outputs.
+4. Use assign declaration and wire to define the functionality of logic circuits.
+5. End the program with endmodule.
+6. Run the program and choose RTL viewer to get RTL realization.
 
 ### PROGRAM 
 /*
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
+Developed by: Krishnaraj D
+RegisterNumber: 212222230070
 */
+```
+i] SR flipflops
+module flipflops(S,R,Q,Qbar,clk);
+input S,R,clk;
+output reg Q,Qbar;
+initial Q = 0;
+initial Qbar = 1;
+always @(posedge clk)
+begin
+Q = S|((~R)&Q);
+Qbar = R|((~S)&(~Q));
+end
+endmodule
+
+ii] JK flipflops
+module JK(J,K,Q,Qbar,clk);
+input J,K,clk;
+output reg Q,Qbar;
+initial Q = 0;
+initial Qbar = 1;
+always @(posedge clk)
+begin
+Q = (((~K)&Q)|(J&(~Q)));
+Qbar = ~Q; 
+end
+endmodule
+
+
+```
+
+
+
+## RTL LOGIC FOR FLIPFLOPS 
+### SR flipflpos
+![WhatsApp Image 2023-05-18 at 11 20 24](https://github.com/NathinR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/118679646/dca4274e-6467-4c08-9f6f-fa992e3db93d)
+
+### JK flipflop
+![image](https://github.com/NathinR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/118679646/cbf60a74-2d62-4115-a89a-9f17b1d5c299)
 
 
 
 
 
 
-### RTL LOGIC FOR FLIPFLOPS 
 
 
+## TIMING DIGRAMS FOR FLIP FLOPS 
+### SR flipflop
+![image](https://github.com/NathinR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/118679646/5a2dc494-c479-40b0-b9f6-47dc433f0943)
 
-
-
-
-
-
-
-### TIMING DIGRAMS FOR FLIP FLOPS 
-
+### JK flipflop
+![image](https://github.com/NathinR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/118679646/6ad31ca6-c6ae-45fe-bb65-e99fe1304a46)
 
 
 
@@ -138,3 +175,4 @@ RegisterNumber:
 
 
 ### RESULTS 
+All the flipflops are implementde using verilog and their functionality has been validated using their functional tables.
